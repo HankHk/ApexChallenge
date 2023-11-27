@@ -70,31 +70,60 @@ document.getElementById("checkboxBonus").addEventListener("change", function() {
 
 document.getElementById('btnRandomize').addEventListener('click', function() {
     
+    // Store a reference to the button
+   let btn = this;
+   // Disable the button after it's clicked
+   btn.disabled = true;
+
+    let millisecondAnimation = 1000;
+    const delayAnimation = 850;
+
     if(document.getElementById("checkboxCharacter").checked)
     {
-        randomizeCharacter();
+        imageCharacter.src= "assets/images/Default/loading.gif";
+        setTimeout(randomizeCharacter, millisecondAnimation);
+        millisecondAnimation += delayAnimation;
     }
 
     if(document.getElementById("checkboxWeapon").checked)
     {
-        randomizeWeapon();
-    }
-
-    if(document.getElementById("checkboxGear").checked)
-    {
-        randomizeGear();
+        imageWeapon.src= "assets/images/Default/loading.gif";
+        setTimeout(randomizeWeapon, millisecondAnimation);
+        millisecondAnimation += delayAnimation;
     }
 
     if(document.getElementById("checkboxDropzone").checked)
     {
-        randomizeDrop();
+        imageDropzone.src= "assets/images/Default/loading.gif";
+        setTimeout(randomizeDrop, millisecondAnimation);
+        millisecondAnimation += delayAnimation;
+    }
+
+    if(document.getElementById("checkboxGear").checked)
+    {
+        imageGear.src= "assets/images/Default/loading.gif";
+        setTimeout(randomizeGear, millisecondAnimation);
+        millisecondAnimation += delayAnimation;
     }
 
     if(document.getElementById("checkboxMeds").checked)
     {
-        randomizeMeds();
+        imageMeds.src= "assets/images/Default/loading.gif";
+        setTimeout(randomizeMeds, millisecondAnimation);
+        millisecondAnimation += delayAnimation;
     }
 
+    if(document.getElementById("checkboxBonus").checked)
+    {
+        imageBonus.src= "assets/images/Default/loading.gif";
+        setTimeout(randomizeBonus, millisecondAnimation);
+        millisecondAnimation += delayAnimation;
+    }
+
+    // Re-enable the button after the function has completed
+    setTimeout(function() {
+    btn.disabled = false;
+    }, millisecondAnimation - delayAnimation + 100);
 });
 
 //endregion Button Randomize
@@ -170,7 +199,7 @@ function randomizeWeapon() {
     const randomWeapon = weaponRestrictions[randomIndexWeapon];
     document.getElementById('txtWeapon').innerText = randomWeapon[0];
     
-    
+    imageWeapon.src = "assets/images/Default/weapondefault-751x610.png";
 }
 
 //endregion Random Weapon
@@ -195,6 +224,8 @@ function randomizeGear() {
     const randomIndexGear = Math.floor(Math.random() * gearRestrictions.length);
     const randomGear = gearRestrictions[randomIndexGear];
     document.getElementById('txtGear').innerText = randomGear[0];
+
+    imageGear.src = "assets/images/Default/geardefault-751x529.png";
 }
 //endregion Random Gear
 
@@ -215,6 +246,8 @@ function randomizeDrop() {
     const randomIndexDrop = Math.floor(Math.random() * dropRestrictions.length);
     const randomDrop = dropRestrictions[randomIndexDrop];
     document.getElementById('txtDropzone').innerText = randomDrop[0];
+
+    imageDropzone.src = "assets/images/Default/dropzonedefault-466x398.jpg";
 }
 //endregion Random Gear
 
@@ -236,7 +269,62 @@ function randomizeMeds() {
     const randomIndexMeds = Math.floor(Math.random() * medsRestrictions.length);
     const randomMeds = medsRestrictions[randomIndexMeds];
     document.getElementById('txtMeds').innerText = randomMeds[0];
+
+    imageMeds.src = "assets/images/Default/medsdefault-751x655.jpg";
 }
 //endregion Random Meds
+
+//region Random Bonus
+
+function randomizeBonus() {
+    const bonusRestrictions = [
+        ["Win the game.",2],
+        ["Get at least 2000 damage.",3],
+        ["Get in Top 5.",1],
+        ["Get in Top 3.",2],
+        ["Get at least 5 Kill.",2],
+        ["Get at least 10 Assit + Kill.",2],
+        ["Be the damage leader in your team. (2000 damage if solo)",2],
+        ["Get a wall jump kill.",1],
+        ["Be the kill leader in your team. (5 kill if solo)",2],
+        ["Knock an enemy with a melee attack.",1],
+        ["Perform two executions on downed enemies.",2],
+        ["Win a game with no Audio.",3],
+        ["Get to top 3 with no Audio.",2],
+        ["Be the assist leader in your team. (5 kill if solo).",2],
+        ["Get a 360° kill.",1],
+        ["Do a squad wipe.",3],
+        ["Never get knocked down. (If you die last on your team it doesn't count as knocked down)",2],
+        ["Be the kill leader or/and the damage leader in your team. (5 kill or/and 2000 damage if solo)",2],
+        ["The sum of each kill in your team must be greater than or equal to the highest survival time.",3],
+        ["All members of your squad having at least 4 kill each.",2],
+        ["The total of the squad damage must be greater than 1500 multiply number of player.",3],
+        ["You must achieve an average of 100 damage for every minute of your survival time.",2],
+        ["Get at least 8 Assist + Kill.",1],
+        ["Everyone on the team says a number, the greatest one will represent the minimun number of kills + assists everyone have to achieve in that match.",1],
+        ["Get in top 3 by switching your main input device. (keyboard/controller)",3],
+        ["Your kill must be greater than your assist. (5 kill if solo)",2],
+        ["The first one picking in legend selection, must never be knocked, protect him. (He must be die last)",2],
+        ["Get the highest survival time in your team. (NO ratting)",2],
+        ["Let your team decide your sensitivity and get in Top 3.",3],
+        ["Your assist must be greater than your kill. (5 kill if solo)",1],
+        ["Be the knockdown leader in your team.",2]
+
+
+    ];
+
+    const randomIndexBonus = Math.floor(Math.random() * bonusRestrictions.length);
+    const randomBonus = bonusRestrictions[randomIndexBonus];
+    document.getElementById('txtBonus').innerText = randomBonus[0];
+
+    imageBonus.src = "assets/images/Default/bonusdefault-751x586.jpg";
+}
+//endregion Random Meds
+
+
+//region Helper
+
+
+//endregion Helper
 
 });
